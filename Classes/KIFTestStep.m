@@ -366,7 +366,7 @@ static NSTimeInterval KIFTestStepDefaultTimeout = 10.0;
         }
         
         // This is probably a UITextField- or UITextView-ish view, so make sure it worked
-        if ([view respondsToSelector:@selector(text)]) {
+        if ([view respondsToSelector:@selector(text)] && ![view isKindOfClass:NSClassFromString(@"UIWebBrowserView")]) {
             // We trim \n and \r because they trigger the return key, so they won't show up in the final product on single-line inputs
             NSString *expected = [expectedResult ? expectedResult : text stringByTrimmingCharactersInSet:[NSCharacterSet newlineCharacterSet]];
             NSString *actual = [[view performSelector:@selector(text)] stringByTrimmingCharactersInSet:[NSCharacterSet newlineCharacterSet]];
